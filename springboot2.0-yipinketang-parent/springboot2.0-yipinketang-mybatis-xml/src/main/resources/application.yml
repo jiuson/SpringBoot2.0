@@ -16,7 +16,9 @@ spring:
 #    maxWait: 60000
 
 mybatis:
-  type-aliases-package: com.yipinketang.app.domain
+  config-locations: classpath:mybatis/mybatis-config.xml #mybatis基础配置文件
+  mapper-locations: classpath:mybatis/mapper/*.xml #mybatis实体类映射文件
+
 logging:
   level:
       com:

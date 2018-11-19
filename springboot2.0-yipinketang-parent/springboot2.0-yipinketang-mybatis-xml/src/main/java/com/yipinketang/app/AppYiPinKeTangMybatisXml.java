@@ -4,15 +4,11 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-/**
- * SpringBoot启动类，主要做一些框架的配置
- */
-
 @SpringBootApplication
 @MapperScan("com.yipinketang.app.mapper")
-public class AppYiPinKeTang {
+public class AppYiPinKeTangMybatisXml {
 
     public static void main(String[] args){
-        SpringApplication.run(AppYiPinKeTang.class, args);
+        SpringApplication.run(AppYiPinKeTangMybatisXml.class, args);
     }
 }
