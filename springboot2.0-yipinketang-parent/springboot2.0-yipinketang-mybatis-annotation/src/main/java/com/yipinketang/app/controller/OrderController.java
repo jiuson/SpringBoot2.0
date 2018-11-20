@@ -4,8 +4,8 @@ import com.fasterxml.jackson.annotation.JsonView;
 import com.yipinketang.app.domain.User;
 import com.yipinketang.app.jsonView.UserView;
 import com.yipinketang.app.mapper.OrderMapperByAnnotation;
-import org.apache.ibatis.annotations.Delete;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -73,5 +73,26 @@ public class OrderController {
     @DeleteMapping("/deleteUserById/{id}")
     public int deleteUserById(@PathVariable("id") Long id){
         return orderMapperByAnnotation.delete(id);
+    }
+
+
+    /**
+     * 测试声明式事务
+     * @param input
+     * @return
+     */
+    @Transactional
+    @PostMapping("/transactionTest")
+    public int transactionTest(@RequestBody User input){
+        input.setCreator("zuozuo");
+        orderMapperByAnnotation.insert(input);
+        /*
+        由于下面这行代码会抛异常，如果不在方法上添加@Transactional注解，则上面一条数据能够成功插入到数据库，如果添加
+        了改注解，则上面一条数据不会插入到数据库，这样就保证了操作的原子性
+         */
+        System.out.println(1 / 0);
+        input.setCreator("");
+        orderMapperByAnnotation.insert(input);
+        return 1;
     }
 }

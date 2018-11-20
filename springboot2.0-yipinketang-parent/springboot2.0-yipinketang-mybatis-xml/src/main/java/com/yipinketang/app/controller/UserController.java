@@ -26,6 +26,7 @@ public class UserController {
     @JsonView(UserView.class)
     @GetMapping("/getAllOrder")
     public List<User> getAllOrder(){
+        System.out.println(dataSource);//测试使用的数据源
         List<User> orderList = orderMapperByXml.findAll();
         if (null == orderList || orderList.size() <= 0){
 
