@@ -53,7 +53,7 @@ SpringBoot2.0  学习、整合其他组件模块，每个模块使用自己独�
 
 <ul>
   <p>mybatis缓存、二级缓存：</p>
-  <li></li>  
+  <li>http://note.youdao.com/noteshare?id=85bc412f094d1f443a744958ca254c16</li>  
 </ul>
 
 
