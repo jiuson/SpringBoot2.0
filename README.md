@@ -47,8 +47,8 @@ SpringBoot2.0  学习、整合其他组件模块，每个模块使用自己独�
 </ul>
 
 <ul>
-  <p>mybatis事务：</p>
-  <li></li>  
+  <p>mybatis事务管理：</p>
+  <li>http://note.youdao.com/noteshare?id=f6fc391a6428859398f1ea06fbaad1cc</li>  
 </ul>
 
 <ul>
