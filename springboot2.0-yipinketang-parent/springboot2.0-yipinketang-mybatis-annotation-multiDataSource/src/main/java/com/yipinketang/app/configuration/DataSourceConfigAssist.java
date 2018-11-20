@@ -15,6 +15,7 @@ import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import javax.sql.DataSource;
 
 /**
+ * create 20181120
  * 配置第二据源
  * 跟主数据源的区别是注解@Primary
  */

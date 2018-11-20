@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
+ * create 20181120
  * 该方式主要演示注解的方式使用MyBatis
  *
  * 如果启动类上面加了@MapperScan("com.yipinketang.app.mapper")注解，则这个地方不用再添加@Mapper注解,

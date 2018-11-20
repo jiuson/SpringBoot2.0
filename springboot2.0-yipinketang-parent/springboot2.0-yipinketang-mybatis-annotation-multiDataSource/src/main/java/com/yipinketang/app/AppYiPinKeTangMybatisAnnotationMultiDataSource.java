@@ -5,6 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
+ * create 20181120
  * SpringBoot启动类，主要做一些框架的配置
  */
 

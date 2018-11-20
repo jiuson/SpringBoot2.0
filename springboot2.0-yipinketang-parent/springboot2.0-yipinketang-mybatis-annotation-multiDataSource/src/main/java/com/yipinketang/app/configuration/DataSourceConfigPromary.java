@@ -15,6 +15,7 @@ import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import javax.sql.DataSource;
 
 /**
+ * create 20181120
  * 配置主数据源
  */
 @Configuration

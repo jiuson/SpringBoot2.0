@@ -5,7 +5,9 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 
 import java.util.Date;
 
-
+/**
+ * create 20181120
+ */
 @JsonInclude(JsonInclude.Include.NON_NULL)//值为null的字段不返回
 public class User {
 
