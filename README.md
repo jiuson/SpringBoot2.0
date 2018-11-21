@@ -56,7 +56,12 @@ SpringBoot2.0  学习、整合其他组件模块，每个模块使用自己独�
   <li>http://note.youdao.com/noteshare?id=85bc412f094d1f443a744958ca254c16</li>  
 </ul>
 
-
+<ul>
+  <p>Nginx——windows安装：</p>
+  <li>今天计划搭建前后端分离的项目，刚开始选择的前端技术是vue，所以网上搜罗各种博客开始操作，中途又犹豫了觉得前端不是主要的方向，故而又想换成bootstrap，或者干脆把前端的东西一起放在后端工程算了，各种搜罗之后还是打算保持初衷：SpringBoot+vue+nginx——时间和精力全耗费在犹豫上，不如专心做一件事</li>
+  <li>http://note.youdao.com/noteshare?id=47c138bd989e9f784a449329b59aa672</li>  
+  <li>https://blog.csdn.net/u011063151/article/details/84324198</li>
+</ul>
 
 
 
