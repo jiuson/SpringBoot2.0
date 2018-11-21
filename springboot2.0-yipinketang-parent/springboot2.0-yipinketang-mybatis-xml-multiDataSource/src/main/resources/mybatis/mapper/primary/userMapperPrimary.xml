@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--这里的namespace一定要是对应mapper包下面的接口，不然会报错：方法绑定异常-->
+<mapper namespace="com.yipinketang.app.mapper.primary.OrderMapperByXmlPrimary">
+    <resultMap id="BaseResultMap" type="com.yipinketang.app.domain.User">
+        <id column="id" property="id" jdbcType="BIGINT"></id>
+        <result column="number" property="number" javaType="java.lang.Integer"></result>
+        <result column="order_type" property="orderType"></result>
+        <result column="order_name" property="orderName" jdbcType="VARCHAR"></result>
+        <result column="creator" property="" jdbcType="VARCHAR"></result>
+        <result column="create_date" property="createDate"></result>
+        <result column="modify_date" property="modifyDate"></result>
+    </resultMap>
+
+    <sql id="base_column_list">
+        id, number, order_type, order_name, creator, create_date, modify_date
+    </sql>
+
+    <!--mybatis会自动根据方法名找到这个映射文件中的对应id的方法，即mapper接口中的方法名与这个映射文件中的id值对应-->
+    <select id="findAll" resultMap="BaseResultMap" flushCache="true">
+        select
+        <include refid="base_column_list"/>
+        from user
+    </select>
+    
+    <select id="findOne" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="base_column_list"/>
+        from user
+        where id = #{id}
+    </select>
+
+    <insert id="insert" parameterType="com.yipinketang.app.domain.User">
+        INSERT INTO user (
+        number,
+        order_type,
+        order_name,
+        creator,
+        create_date,
+        modify_date
+        )
+        VALUES(#{number}, #{orderType}, #{orderName}, #{creator}, #{createDate}, #{modifyDate})
+    </insert>
+
+    <update id="update" parameterType="com.yipinketang.app.domain.User">
+        update user set order_name = #{orderName} where id = #{id}
+    </update>
+
+    <delete id="delete" parameterType="java.lang.Long">
+        delete from user where id = #{id}
+    </delete>
+</mapper>

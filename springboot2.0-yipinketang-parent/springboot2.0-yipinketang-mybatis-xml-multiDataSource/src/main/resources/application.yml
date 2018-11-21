@@ -1,0 +1,26 @@
+server:
+  port: 8000
+spring:
+  profiles: dev
+  application:
+    name: springboot-mybatis
+  datasource:
+    primary:
+      #在配置多数据源的时候，如果配置成url，则会报jdbcUrl找不到的异常，一开始不知道，找了好久才知道需要将url改成jdbc-url，然后就能成功了
+      jdbc-url: jdbc:mysql://127.0.0.1:3306/springboot-mybatis?useSSL=false&serverTimezone=GMT%2B8
+      username: root
+      password: 666666
+      driver-class-name: com.mysql.cj.jdbc.Driver
+    assist:
+      jdbc-url: jdbc:mysql://127.0.0.1:3306/springboot-mybatis-assist?useSSL=false&serverTimezone=GMT%2B8
+      username: root
+      password: 666666
+      driver-class-name: com.mysql.cj.jdbc.Driver
+mybatis:
+  config-locations: classpath:mybatis/mybatis-config.xml #mybatis基础配置文件地址
+logging:
+  level:
+    com:
+      yipinketang:
+        app:
+          mapper: debug #打印sql日志
