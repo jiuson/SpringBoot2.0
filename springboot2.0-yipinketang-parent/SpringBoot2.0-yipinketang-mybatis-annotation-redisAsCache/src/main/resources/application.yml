@@ -1,0 +1,43 @@
+server:
+  port: 8000
+spring:
+  profiles: dev
+  application:
+    name: springboot-mybatis
+  datasource:
+    #因为在连接本地数据库的时候报时区错误，上网搜了下，说是要添加时区，然后照做之后就成功了，下面配置的是东八区
+    url: jdbc:mysql://127.0.0.1:3306/springboot-mybatis?useSSL=false&serverTimezone=GMT%2B8
+    username: root
+    password: 666666
+    #据说mysql8.0.* 弃用了com.mysql.jdbc.Driver，更换成com.mysql.cj.jdbc.Driver，如果还是使用之前的驱动，会报异常
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    #type: com.alibaba.druid.pool.DruidDataSource
+    #initialSize: 5
+    #minIdle: 5
+    #maxActive: 20
+    #maxWait: 60000
+  redis:
+    host: 192.168.1.40
+    port: 6379
+    #password:
+    database: 0 #默认有16个库，这里指定用第一个
+    timeout: 1000
+    pool:
+      maxTotal: 8
+      maxWaitMillis: 1000
+      maxIdle: 8
+      minIdle: 0
+
+#无意间发现下面的参数配置可填可不填，应该是默认配置
+#mybatis:
+#  type-aliases-package: com.yipinketang.app.domain
+#  configuration:
+#    cache-enabled: true
+
+
+logging:
+  level:
+    com:
+      yipinketang:
+        app:
+          mapper: debug #打印sql日志
