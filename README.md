@@ -78,6 +78,7 @@ SpringBoot2.0  学习、整合其他组件模块，每个模块使用自己独�
   <h2>SpringBoot+MyBatis+redis：基于xml文件配置的、将redis作为MyBatis的二级缓存</h2>
   <li>module：SpringBoot2.0-yipinketang-mybatis-xml-redisAsCache</li>  
   <li>http://note.youdao.com/noteshare?id=1500bbe67ef5120369416278e2e4469c</li> 
+  <li>https://blog.csdn.net/u011063151/article/details/84341512</li>
 </ul>
 
 
