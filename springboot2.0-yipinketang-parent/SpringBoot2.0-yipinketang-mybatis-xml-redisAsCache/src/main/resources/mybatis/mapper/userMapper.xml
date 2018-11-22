@@ -4,6 +4,8 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!--这里的namespace一定要是对应mapper包下面的接口，不然会报错：方法绑定异常-->
 <mapper namespace="com.yipinketang.app.mapper.OrderMapperByXml">
+    <!--配置二级缓存-->
+    <cache type="com.yipinketang.app.cache.MyBatisRedisCache"/>
     <resultMap id="BaseResultMap" type="com.yipinketang.app.domain.User">
         <id column="id" property="id" jdbcType="BIGINT"></id>
         <result column="number" property="number" javaType="java.lang.Integer"></result>
@@ -18,13 +20,14 @@
         id, number, order_type, order_name, creator, create_date, modify_date
     </sql>
 
-    <!--mybatis会自动根据方法名找到这个映射文件中的对应id的方法，即mapper接口中的方法名与这个映射文件中的id值对应-->
-    <select id="findAll" resultMap="BaseResultMap" flushCache="true">
+    <!--mybatis会自动根据方法名找到这个映射文件中的对应id的方法，即mapper接口中的方法名与这个映射文件中的id值对应
+    flushCache属性如果设置为true，每次都会刷新缓存，效果等同于没有开启二级缓存-->
+    <select id="findAll" resultMap="BaseResultMap" flushCache="false">
         select
         <include refid="base_column_list"/>
         from user
     </select>
-    
+
     <select id="findOne" parameterType="java.lang.Long" resultMap="BaseResultMap">
         select
         <include refid="base_column_list"/>
