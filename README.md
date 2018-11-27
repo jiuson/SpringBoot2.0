@@ -89,7 +89,10 @@ SpringBoot2.0  学习、整合其他组件模块，每个模块使用自己独�
 
 <ul>
   <h2>SpringBoot Actuator：SpringBoot监控</h2>
-  <li></li>  
+  <li>springboot2.0-yipinketang-jpa-actuator工程主要演示SpringBoot JPA + Actuator相关配置</li>  
+  <li>SpringBoot JPA内置实现框架是Hibernate</li>
+  <li>Actuator主要为SpringBoot应用提供监控和管理能力</li>
+  <li></li>
 </ul>
 
 
