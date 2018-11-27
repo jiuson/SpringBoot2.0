@@ -94,6 +94,7 @@ SpringBoot2.0  学习、整合其他组件模块，每个模块使用自己独�
   <li>Actuator主要为SpringBoot应用提供监控和管理能力</li>
   <li>SpringBoot jpa将findOne(id)的返回值改成了Optional<T>，这是Java 8 的新特性</li>
   <li>今天看Actuator的时候看到了一个InitializingBean这个接口？</li>
+  <li>http://note.youdao.com/noteshare?id=37261ffb786d93e4aaa73c0f0d67c118</li>
 </ul>
 
 
