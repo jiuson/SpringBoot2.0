@@ -1,0 +1,33 @@
+server:
+  port: 8000
+spring:
+  profiles: dev
+  application:
+    name: springboot-jpa-actuator
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/jpa?useSSL=false&serverTimezone=GMT%2B8
+    username: root
+    password: 666666
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    show-sql: true
+    open-in-view: false  #啥作用?
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+        hbm2ddl:
+          auto: update
+info:
+  head: head
+management:
+  endpoints:
+    web:
+      exposure:
+        #加载所有的端点，默认只加载了info、health
+        include: '*'
+  endpoint:
+    health:
+      show-details: always
+    #可以关闭指定的端点
+    shutdown:
+      enabled: true

@@ -11,7 +11,7 @@
     <modules>
         <module>springboot2.0-yipinketang-mybatis-annotation</module>
         <module>springboot2.0-yipinketang-mybatis-xml</module>
-        <module>springboot2.0-yipinketang-jpa</module>
+        <module>springboot2.0-yipinketang-jpa-actuator</module>
         <module>springboot2.0-yipinketang-mybatis-annotation-multiDataSource</module>
         <module>springboot2.0-yipinketang-mybatis-xml-multiDataSource</module>
         <module>SpringBoot2.0-yipinketang-mybatis-xml-redisAsCache</module>
