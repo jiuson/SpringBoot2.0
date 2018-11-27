@@ -93,6 +93,7 @@ SpringBoot2.0  学习、整合其他组件模块，每个模块使用自己独�
   <li>SpringBoot JPA内置实现框架是Hibernate</li>
   <li>Actuator主要为SpringBoot应用提供监控和管理能力</li>
   <li>SpringBoot jpa将findOne(id)的返回值改成了Optional<T>，这是Java 8 的新特性</li>
+  <li>今天看Actuator的时候看到了一个InitializingBean这个接口？</li>
 </ul>
 
 
