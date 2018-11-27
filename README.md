@@ -87,6 +87,11 @@ SpringBoot2.0  学习、整合其他组件模块，每个模块使用自己独�
   <li>@CacheNamespace(implementation = com.yipinketang.app.cache.MyBatisRedisCache.class)//添加二级缓存处理类，类似xml文件的<cache>标签</li>
 </ul>
 
+<ul>
+  <h2>SpringBoot Actuator：SpringBoot监控</h2>
+  <li></li>  
+</ul>
+
 
 
 
