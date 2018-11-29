@@ -1,0 +1,6 @@
+server:
+  port: 8000
+spring:
+  profiles: dev
+  application:
+    name: springboot-aop

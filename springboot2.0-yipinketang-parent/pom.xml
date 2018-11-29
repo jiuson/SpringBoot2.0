@@ -16,6 +16,7 @@
         <module>springboot2.0-yipinketang-mybatis-xml-multiDataSource</module>
         <module>SpringBoot2.0-yipinketang-mybatis-xml-redisAsCache</module>
         <module>SpringBoot2.0-yipinketang-mybatis-annotation-redisAsCache</module>
+        <module>springboot2.0-yipinketang-aop</module>
     </modules>
 
 
