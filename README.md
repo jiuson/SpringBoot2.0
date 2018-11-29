@@ -1,5 +1,5 @@
 <ul>
-  <p></p>
+  <h2></h2>
   <li></li>  
 </ul>
 <ol>
@@ -96,6 +96,33 @@ SpringBoot2.0  学习、整合其他组件模块，每个模块使用自己独�
   <li>今天看Actuator的时候看到了一个InitializingBean这个接口？</li>
   <li>http://note.youdao.com/noteshare?id=37261ffb786d93e4aaa73c0f0d67c118</li>
 </ul>
+
+
+<ul>
+  <h2>SpringBoot AOP</h2>
+  <li>springboot2.0-yipinketang-aop 模块主要演示SpringBoot AOP使用</li>
+  <li>http://note.youdao.com/noteshare?id=7bef5658f1d06374b35f90d9b0c13efe</li>  
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
