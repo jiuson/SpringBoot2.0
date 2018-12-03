@@ -104,6 +104,10 @@ SpringBoot2.0  学习、整合其他组件模块，每个模块使用自己独�
   <li>http://note.youdao.com/noteshare?id=7bef5658f1d06374b35f90d9b0c13efe</li>  
 </ul>
 
+<ul>
+  <h2>SpringBoot 拦截器</h2>
+  <li>http://note.youdao.com/noteshare?id=8971c447144a120d387f1d2a4537ea80</li>  
+</ul>
 
 
 
