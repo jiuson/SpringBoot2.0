@@ -109,8 +109,10 @@ SpringBoot2.0  学习、整合其他组件模块，每个模块使用自己独�
   <li>http://note.youdao.com/noteshare?id=8971c447144a120d387f1d2a4537ea80</li>  
 </ul>
 
-
-
+<ul>
+  <h2>SpringBoot WebSocket（编辑中）</h2>
+  <li>https://github.com/wjzuo/SpringBoot2.0/tree/master/SpringBoot-yipinketang-WebSocket</li>  
+</ul>
 
 
 
