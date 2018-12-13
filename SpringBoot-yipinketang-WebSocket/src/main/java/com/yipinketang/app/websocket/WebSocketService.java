@@ -3,13 +3,14 @@ package com.yipinketang.app.websocket;
 import org.springframework.stereotype.Component;
 
 import javax.websocket.*;
+import javax.websocket.server.PathParam;
 import javax.websocket.server.ServerEndpoint;
 import java.io.IOException;
 import java.util.Map;
 import java.util.concurrent.CopyOnWriteArraySet;
 
 @Component
-@ServerEndpoint(value = "/websocket/{roomId}")//roomId用于区分指定连接
+@ServerEndpoint(value = "/websocket/{roomId}/{userFlag}")//roomId用于区分指定连接
 public class WebSocketService {
 
     private static int onlineCount = 0;
@@ -54,7 +55,7 @@ public class WebSocketService {
      * @param session
      */
     @OnMessage
-    public void onMessage(String message, Session session){
+    public void onMessage(@PathParam("roomId") String roomId, String message, Session session){
         System.out.println("message from client: " + message);
         Map<String, String> currrentPathParameters = this.session.getPathParameters();
 
