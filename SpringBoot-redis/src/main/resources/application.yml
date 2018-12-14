@@ -7,5 +7,5 @@ spring:
   redis:
     host: 192.168.1.40
     port: 6379
-    database: 1
-    timeout: 10
+    database: 2
+#    timeout: 10
