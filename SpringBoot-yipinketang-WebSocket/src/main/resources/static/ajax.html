@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jquery提交表单</title>
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+<form action="" id="myform">
+    mobile:<input type="text" name="mobile"/><br>
+    authCode:<input type="text" name="authCode"/><br>
+    position:<input type="text" name="position"/><br>
+    cardChannelName:<input type="text" name="cardChannelName"/>
+</form>
+ 
+<a href="#" id="get" style="text-decoration: none;">get</a><br>
+<a href="#" id="post1" style="text-decoration: none;">post localhost</a><br>
+<a href="#" id="post2" style="text-decoration: none;">post ceshi</a><br>
+<a href="#" id="post3" style="text-decoration: none;">post shengchan</a>
+<div>
+    <p id="divp">before..</p>
+</div>
+ 
+<script type="text/javascript">
+console.log(JSON.stringify($('#myform')));
+var postData = {};
+postData.mobile = '13100000000';
+postData.authCode = '000';
+postData.position = '222';
+postData.cardChannelName = '222';
+console.log(JSON.stringify(postData));
+    $(document).ready(function(){
+        $("#get").click(function(){
+            $.ajax({
+                type:'GET',
+                url:'http://web.sd.com/api/mba/card/authCode?mobile=13100000010',
+                //data:$("#myform").serialize(),
+                //cache:false,
+                //dataType:'json',
+                success:function(data){
+                    console.log(data);
+                }
+            });
+        });
+    });
+	$(document).ready(function(){
+        $("#post1").click(function(){
+            $.ajax({
+                type:'POST',
+				url:'http://localhost:8081/card/authCode',
+				data: JSON.stringify(postData),
+                cache:false,
+				contentType: "application/json; charset=utf-8",
+                dataType:'json',
+                success:function(data){
+                    console.log(data);
+                }
+            });
+        });
+    });
+	
+	$(document).ready(function(){
+        $("#post2").click(function(){
+            $.ajax({
+                type:'POST',
+                url:'http://web.sd.com/api/mba/card/authCode',
+				data: JSON.stringify(postData),
+				contentType: "application/json; charset=utf-8",
+                dataType:'json',
+                success:function(data){
+                    console.log(data);
+                }
+            });
+        });
+    });
+	$(document).ready(function(){
+        $("#post3").click(function(){
+            $.ajax({
+                type:'POST',
+                url:'http://www.mql-wh.com/api/mba/card/authCode',
+				data: JSON.stringify(postData),
+				contentType: "application/json; charset=utf-8",
+                dataType:'json',
+                success:function(data){
+                    console.log(data);
+                }
+            });
+        });
+    });
+</script>
+ 
+</body>
+</html>
