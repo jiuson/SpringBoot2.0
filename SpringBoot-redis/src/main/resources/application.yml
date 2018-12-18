@@ -5,7 +5,7 @@ spring:
     name: springboot-redis
   profiles: dev
   redis:
-    host: 192.168.1.40
+    host: 127.0.0.1
     port: 6379
     database: 2
 #    timeout: 10
