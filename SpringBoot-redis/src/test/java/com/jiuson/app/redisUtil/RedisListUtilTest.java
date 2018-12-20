@@ -35,9 +35,10 @@ public class RedisListUtilTest {
         logger.info("rightPopString result:" + result);
     }
 
+    @Test
     public void rightPopStringExpire(){
         String result = (String) redisListUtil.rightPop("listString", 30);
-        logger.info("" + result);
+        logger.info("rightPopStringExpire result:" + result);
     }
 
     @Test
@@ -68,6 +69,12 @@ public class RedisListUtilTest {
     public void rangeString(){
         List<Object> result = redisListUtil.range("listString", 0, 10);
         logger.info("rangeString result:" + result);
+    }
+
+    @Test
+    public void removeString(){
+        long result = redisListUtil.remove("listString", 2, "listString_value1");
+        logger.info("removeString result:" + result);
     }
 
     /**----------------------------value是Object类型--------------------------------*/

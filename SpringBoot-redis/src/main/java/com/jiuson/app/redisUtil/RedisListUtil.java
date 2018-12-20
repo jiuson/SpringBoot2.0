@@ -96,7 +96,13 @@ public class RedisListUtil {
         return redisTemplate.opsForList().rightPop(key);
     }
 
-
+    /**
+     * 从key对应的list右边删除一个数据并返回这个删除的数据，如果list里面没有数据，则保持连接直到有数据返回或超时
+     * （阻塞删除）
+     * @param key
+     * @param time
+     * @return
+     */
     public Object rightPop(String key, long time){
         return redisTemplate.opsForList().rightPop(key, time, TimeUnit.SECONDS);
     }
