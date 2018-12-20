@@ -9,6 +9,9 @@ import org.springframework.data.redis.listener.PatternTopic;
 import org.springframework.data.redis.listener.RedisMessageListenerContainer;
 import org.springframework.data.redis.listener.adapter.MessageListenerAdapter;
 
+/**
+ * redis发布订阅的配置
+ */
 @Configuration
 public class RedisSubConfig {
 

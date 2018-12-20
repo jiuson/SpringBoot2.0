@@ -11,7 +11,7 @@ import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 
 /**
- * 自定义redis配置
+ * 自定义redis作为cache的配置
  */
 @Configuration
 public class RedisCacheConfig {
