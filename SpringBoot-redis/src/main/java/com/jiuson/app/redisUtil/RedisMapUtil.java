@@ -4,7 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 @Component
 public class RedisMapUtil {
@@ -15,31 +17,50 @@ public class RedisMapUtil {
     private RedisCommonUtil redisUtil;
 
     /**
-     * HashGet
-     * @param key not null
-     * @param item not null
+     * 往key对应的Map中存放数据
+     * @param key rediskey
+     * @param hashKey Mapkey
+     * @param value Mapvalue
      * @return
      */
-    public Object hGet(String key, String item){
-        return redisTemplate.opsForHash().get(key, item);
+    public boolean hashPut(String key, String hashKey, Object value){
+        try {
+            redisTemplate.opsForHash().put(key, hashKey, value);
+            return true;
+        }catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
     }
 
     /**
-     * 获取hashKey对应的所有键值
+     * 往key对应的Map中存放数据，并设置key的过期时间
      * @param key
+     * @param hashKey
+     * @param value
+     * @param time 如果已存在的hash表有过期时间，则会替换原有的时间
      * @return
      */
-    public Map<Object, Object> hmGet(String key){
-        return redisTemplate.opsForHash().entries(key);
+    public boolean hashPut(String key, String hashKey, Object value, long time){
+        try {
+            redisTemplate.opsForHash().put(key, hashKey, value);
+            if (time > 0){
+                redisUtil.expire(key, time);
+            }
+            return true;
+        }catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
     }
 
     /**
-     * hash缓存存入Map
+     * 往key对应的Map中存放Map数据
      * @param key
      * @param map
      * @return
      */
-    public boolean hmSet(String key, Map<String, Object> map){
+    public boolean hashPutAll(String key, Map<String, Object> map){
         try {
             redisTemplate.opsForHash().putAll(key, map);
             return true;
@@ -50,13 +71,13 @@ public class RedisMapUtil {
     }
 
     /**
-     * 带过期时间的hash缓存存入Map
+     * 往key对应的Map中存放Map数据，并设置key的过期时间
      * @param key
      * @param map
      * @param time
      * @return
      */
-    public boolean hmSet(String key, Map<String, Object> map, long time){
+    public boolean hashPutAll(String key, Map<String, Object> map, long time){
         try {
             redisTemplate.opsForHash().putAll(key, map);
             if (time > 0){
@@ -70,81 +91,68 @@ public class RedisMapUtil {
     }
 
     /**
-     * 往一张hash表中放入数据，如果不存在将创建
+     * 获取指定key对应Map的hashKey
+     * @param key rediskey
+     * @param hashKey Mapkey
+     * @return
+     */
+    public Object hashGet(String key, String hashKey){
+        return redisTemplate.opsForHash().get(key, hashKey);
+    }
+
+    /**
+     * 获取指定key的map
      * @param key
-     * @param item
-     * @param value
      * @return
      */
-    public boolean hSet(String key, String item, Object value){
-        try {
-            redisTemplate.opsForHash().put(key, item, value);
-            return true;
-        }catch (Exception e){
-            e.printStackTrace();
-            return false;
-        }
+    public Map<Object, Object> hashEntries(String key){
+        return redisTemplate.opsForHash().entries(key);
     }
 
     /**
-     * 往一张hash表中放入数据，如果不存在将创建,设置过期时间
+     * 获取key对应的Map的所有hashKey
      * @param key
-     * @param item
-     * @param value
-     * @param time 如果已存在的hash表有过期时间，则会替换原有的时间
      * @return
      */
-    public boolean hset(String key, String item, Object value, long time){
-        try {
-            redisTemplate.opsForHash().put(key, item, value);
-            if (time > 0){
-                redisUtil.expire(key, time);
-            }
-            return true;
-        }catch (Exception e){
-            e.printStackTrace();
-            return false;
-        }
+    public Set<Object> hashKeys(String key){
+        return redisTemplate.opsForHash().keys(key);
     }
 
     /**
-     * 删除hash表中的值
-     * @param key not null
-     * @param item not null
-     */
-    public void hDel(String key, Object ... item){
-        redisTemplate.opsForHash().delete(key, item);
-    }
-
-    /**
-     * 判断hash表中是否存在该项的值
-     * @param key  not null
-     * @param item  not null
-     * @return
-     */
-    public boolean hHashKey(String key, String item){
-        return redisTemplate.opsForHash().hasKey(key, item);
-    }
-
-    /**
-     * hash递增，如果不存在，就会创建一个，并把新增后的值返回
+     * 判断key对应的Map中是否包含hashKey
      * @param key
-     * @param item
-     * @param by
+     * @param hashKey
      * @return
      */
-    public double hIncr(String key, String item, double by){
-        return redisTemplate.opsForHash().increment(key, item, by);
+    public boolean hashHasKey(String key, Object hashKey){
+        return redisTemplate.opsForHash().hasKey(key, hashKey);
     }
 
     /**
-     * hash递减
+     * 返回key对应的Map的size
      * @param key
-     * @param item
-     * @param by
      * @return
      */
-    public double hDecr(String key, String item, double by){
-        return redisTemplate.opsForHash().increment(key, item, -by);
+    public long hashSize(String key){
+        return redisTemplate.opsForHash().size(key);
     }
+
+    /**
+     * 获取key对应的Map的value
+     * @param key
+     * @return
+     */
+    public List<Object> hashValues(String key){
+        return redisTemplate.opsForHash().values(key);
+    }
+
+    /**
+     * 删除key对应的Map中的指定数据
+     * @param key
+     * @param hashKeys
+     */
+    public void hashDelete(String key, Object ... hashKeys){
+        redisTemplate.opsForHash().delete(key, hashKeys);
+    }
+
 }
