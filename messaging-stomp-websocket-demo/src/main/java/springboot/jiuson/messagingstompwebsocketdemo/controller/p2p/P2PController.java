@@ -18,7 +18,7 @@ public class P2PController {
      */
     @MessageMapping("/queue")
     public void p2p(ReceiveMessage receiveMessage){
-        //通过convertAndSendToUser方法，把消息推送到指定的用户，
+        //通过convertAndSendToUser方法，把消息推送到指定的用户，js的订阅地址应该是"/queue/tom/message"
         simpMessagingTemplate.convertAndSendToUser("tom", "message", receiveMessage.getName());
     }
 }

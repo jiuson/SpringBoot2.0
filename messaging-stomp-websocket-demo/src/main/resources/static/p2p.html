@@ -14,12 +14,12 @@
             $("#response").html();
         }
         function connect() {
-            var socket = new SockJS("/queueServer");
+            var socket = new SockJS("/user");
             stompClient = Stomp.over(socket);
             stompClient.connect({}, function(frame) {
                 setConnected(true);
                 console.log('Connected: ' + frame);
-                stompClient.subscribe('/user/'+document.getElementById('user').value+'/message', function(response){
+                stompClient.subscribe('/queue/'+document.getElementById('user').value+'/message', function(response){
                     var response1 = document.getElementById('response');
                     var p = document.createElement('p');
                     p.style.wordWrap = 'break-word';
