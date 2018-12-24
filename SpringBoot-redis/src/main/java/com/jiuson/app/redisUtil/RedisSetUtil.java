@@ -15,41 +15,12 @@ public class RedisSetUtil {
     private RedisCommonUtil redisUtil;
 
     /**
-     * 根据key获取set中的所有值
-     * @param key
-     * @return
-     */
-    public Set<Object> sGet(String key){
-        try {
-            return redisTemplate.opsForSet().members(key);
-        }catch (Exception e){
-            e.printStackTrace();
-            return null;
-        }
-    }
-
-    /**
-     * 根据value从一个set中查询是否存在
-     * @param key
-     * @param value
-     * @return
-     */
-    public boolean sHashkey(String key, Object value){
-        try {
-            return redisTemplate.opsForSet().isMember(key, value);
-        }catch (Exception e){
-            e.printStackTrace();
-            return false;
-        }
-    }
-
-    /**
      * 将数据放入set缓存
      * @param key
      * @param values
      * @return 成功个数
      */
-    public long sSet(String key, Object ... values){
+    public long setAdd(String key, Object ... values){
         try {
             return redisTemplate.opsForSet().add(key, values);
         }catch (Exception e){
@@ -65,7 +36,7 @@ public class RedisSetUtil {
      * @param values
      * @return
      */
-    public long sSetAndTime(String key, long time, Object ... values){
+    public long setAdd(String key, long time, Object ... values){
         try {
             Long count = redisTemplate.opsForSet().add(key, values);
             if (time > 0){
@@ -79,11 +50,42 @@ public class RedisSetUtil {
     }
 
     /**
-     * 获取set缓存的长度
+     * 获取key对应的set的值
      * @param key
      * @return
      */
-    public long sGetSetSize(String key){
+    public Set<Object> setMembers(String key){
+        try {
+            return redisTemplate.opsForSet().members(key);
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    /**
+     * 判断key对应的set中是否存在value
+     * @param key
+     * @param value
+     * @return
+     */
+    public boolean sHashkey(String key, Object value){
+        try {
+            return redisTemplate.opsForSet().isMember(key, value);
+        }catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+
+
+    /**
+     * 获取key对应的set的size
+     * @param key
+     * @return
+     */
+    public long setSize(String key){
         try {
             return redisTemplate.opsForSet().size(key);
         }catch (Exception e){
@@ -93,7 +95,7 @@ public class RedisSetUtil {
     }
 
     /**
-     * 从set中移除values
+     * 从key对应的set中删除values
      * @param key
      * @param values
      * @return
