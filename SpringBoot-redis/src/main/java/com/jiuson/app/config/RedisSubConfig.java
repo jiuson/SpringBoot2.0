@@ -37,9 +37,14 @@ public class RedisSubConfig {
      */
     @Bean
     MessageListenerAdapter listenerAdapter(RedisReceiveService redisReceiveService){
-        return new MessageListenerAdapter(redisReceiveService, "receiveMessage");
+        return new MessageListenerAdapter(redisReceiveService, "receiveMessage");//通过反射机制调用RedisReceiveService的receiveMessage方法
     }
 
+    /**
+     * 通过默认的RedisConnectionFactory创建一个StringRedisTemplate bean
+     * @param connectionFactory
+     * @return
+     */
     @Bean
     StringRedisTemplate template(RedisConnectionFactory connectionFactory){
         return new StringRedisTemplate(connectionFactory);
