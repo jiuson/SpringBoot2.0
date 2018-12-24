@@ -1,7 +1,7 @@
 package com.jiuson.app.redisUtil;
 
 /**
- * 存入redis缓存的对象
+ * 存入redis缓存的对象（测试用）
  */
 public class Data {
 
