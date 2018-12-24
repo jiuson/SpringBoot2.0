@@ -15,7 +15,7 @@ public class RedisSetUtil {
     private RedisCommonUtil redisUtil;
 
     /**
-     * 将数据放入set缓存
+     * 将数据放入key对应的set集合
      * @param key
      * @param values
      * @return 成功个数
@@ -30,13 +30,13 @@ public class RedisSetUtil {
     }
 
     /**
-     * 将set放入缓存，并设置过期时间
+     * 将数据放入key对应的set集合，并设置key的过期时间
      * @param key
      * @param time
      * @param values
      * @return
      */
-    public long setAdd(String key, long time, Object ... values){
+    public long setAddAndExpire(String key, long time, Object ... values){
         try {
             Long count = redisTemplate.opsForSet().add(key, values);
             if (time > 0){
@@ -50,7 +50,7 @@ public class RedisSetUtil {
     }
 
     /**
-     * 获取key对应的set的值
+     * 获取key对应的set集合
      * @param key
      * @return
      */
@@ -64,12 +64,12 @@ public class RedisSetUtil {
     }
 
     /**
-     * 判断key对应的set中是否存在value
+     * 判断key对应的set集合中是否存在value对象
      * @param key
      * @param value
      * @return
      */
-    public boolean sHashkey(String key, Object value){
+    public boolean setIsMember(String key, Object value){
         try {
             return redisTemplate.opsForSet().isMember(key, value);
         }catch (Exception e){
@@ -95,9 +95,9 @@ public class RedisSetUtil {
     }
 
     /**
-     * 从key对应的set中删除values
+     * 从key对应的set集合中删除values对象
      * @param key
-     * @param values
+     * @param values  not null
      * @return
      */
     public long setRemove(String key, Object ... values){
