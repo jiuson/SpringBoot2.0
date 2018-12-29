@@ -1,0 +1,113 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>My WebSocket</title>
+</head>
+
+<body>
+<div id="message" style="border: 1px solid #000;margin-left:100px; margin-right:100px; margin-top: 50px; overflow: auto; height:600px;">
+</div>
+<div style="margin-left: 100px; margin-right: 100px; margin-top: 50px">
+<p style="">请输入:</p>
+</div>
+<div style="border: 1px solid #000; margin-left: 100px; margin-right: 100px; margin-top: 5px; height: 100px">
+<input id="text" type="textarea" style="height: 94px; width: 1000px"/><br>
+</div>
+<!--question_type:--><input id="question_type" type="text" hidden=true /><br>
+<!--user_flag:--><input id="user_flag" type="text" hidden=true /><br>
+<div style="margin-left: 100px; margin-right: 100px; ">
+<button onclick="send()">发送</button> <br>  
+</div>
+</body>
+
+<script type="text/javascript">
+    var websocket = null;
+	var timer = null;
+
+    //判断当前浏览器是否支持WebSocket
+    if('WebSocket' in window){
+		websocket = new WebSocket("ws://localhost:8085/ai-robot/3Sj141/356Tul5T");
+        //websocket = new WebSocket("wss://test.mql-wh.com/ai-robot/9g7Y25/YsURPd2U");
+		//websocket = new WebSocket("wss://www.mql-wh.com/ai-robot/9g7Y20/YsURPd2U");
+		//websocket = new WebSocket("ws://192.168.1.30:8085/ai-robot/49noLc/82l41208");
+    }
+    else{
+        alert('Not support websocket')
+    }
+
+    //连接发生错误的回调方法
+    websocket.onerror = function(){
+        setMessageInnerHTML("error");
+    };
+	//连接成功建立的回调方法
+    websocket.onopen = function(event){
+        //setMessageInnerHTML("open");
+		console.log("open");
+    }
+
+    //接收到消息的回调方法
+    websocket.onmessage = function(event){
+		var data = JSON.parse(event.data);
+		for(var i = 0; i < data.length; i++){
+				if(data[i].userFlag == 'A'){
+					document.getElementById("question_type").value = data[i].questionType;
+					document.getElementById("user_flag").value = data[i].userFlag;
+					setMessageInnerHTML("<d	iv style=' width: 600px; margin-left: 10px'>student:" + data[i].timestamp + "<p style='background: #A8A8A8' align='left'><br>" + data[i].message + "</p></div>");
+					console.log("收到服务回复:" + data[i].message);
+				}else if(data[i].userFlag != 'A'){
+					document.getElementById("question_type").value = data[i].questionType;
+					document.getElementById("user_flag").value = data[i].userFlag;
+					setMessageInnerHTML("<div style='width: 600px; margin-left: 1000px' align=right>robot: " + data[i].timestamp + "<p align='left' style='background: #BA55D3'><br>" + data[i].message + "</p></div>");
+					console.log("收到服务回复:" + data[i].message);
+					//if(data[i].timer == 1){
+					//	timer = window.setTimeout(timeout5s(data[i].questionType), 50000);
+					//}
+				}
+			}
+    }
+	
+	function timeout5s(questionType){
+		var data = {};
+		data.message = "";
+		data.userFlag = "A";
+		data.questionType = questionType;
+		data.siteId = "700157032";
+		data.timestamp = (new Date()).getTime();
+		var message = JSON.stringify(data);
+		websocket.send(message);
+	}
+
+    //将消息显示在网页上
+    function setMessageInnerHTML(innerHTML){
+		var message = document.getElementById('message');
+        message.innerHTML += innerHTML + '<br/>';
+		message.scrollTop = message.scrollHeight;
+    }
+
+    //发送消息
+    function send(){
+        var text = document.getElementById('text').value;
+		var question_type = document.getElementById('question_type').value;
+		var user_flag = document.getElementById('user_flag').value;
+		var data = {};
+		data.message = text;
+		data.userFlag = "A";
+		data.questionType = question_type;
+		//data.siteId = "700167017";
+		data.siteId = "700157032";
+		data.timestamp = (new Date()).getTime();
+		var message = JSON.stringify(data)
+		setMessageInnerHTML("<div style='width: 600px; margin-left: 10px'>student:" + data.timestamp + "<br><p style='background: #A8A8A8' align='left'>" + text + "</p></div>");
+		//window.clearTimeout(timer);
+        websocket.send(message);
+    }
+	
+	//回车事件
+	function keyListener(event){
+		if(e.keyCode ==13){
+			send();
+		}
+	}
+
+</script>
+</html>
